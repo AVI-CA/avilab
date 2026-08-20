@@ -449,7 +449,7 @@ a:hover {
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: 22px;
-  align-items: center;
+  align-items: start;
   overflow: visible;
 }
 
@@ -543,17 +543,27 @@ a:hover {
 }
 
 .shot-slides {
-  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .shot-slide {
+  grid-area: 1 / 1;
   margin: 0;
   width: 100%;
-  display: none;
 }
 
-.shot-slide.is-active {
-  display: block;
+.device-iphone.shot-slide:not(.is-active) {
+  display: none !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.device-iphone.shot-slide.is-active {
+  display: block !important;
+  visibility: visible;
+  position: relative;
+  z-index: 1;
 }
 
 .device-iphone {

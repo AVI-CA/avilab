@@ -46,7 +46,9 @@
     const go = (i) => {
       index = (i + slides.length) % slides.length;
       slides.forEach((slide, n) => {
-        slide.classList.toggle("is-active", n === index);
+        const on = n === index;
+        slide.classList.toggle("is-active", on);
+        slide.toggleAttribute("hidden", !on);
       });
       dots.forEach((dot, n) => {
         dot.setAttribute("aria-selected", n === index ? "true" : "false");

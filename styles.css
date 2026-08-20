@@ -618,8 +618,11 @@ a:hover {
 
 .shot-dots {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
   align-items: center;
+  max-width: 140px;
 }
 
 .shot-dot {

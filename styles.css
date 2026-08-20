@@ -507,9 +507,57 @@ a:hover {
 }
 
 .app-copy p {
-  margin: 14px 0 22px;
+  margin: 0 0 12px;
   color: var(--text-muted);
-  max-width: 38ch;
+  max-width: 44ch;
+}
+
+.app-copy p.app-lede {
+  margin: 8px 0 12px;
+  color: var(--text);
+  font-size: 1.12rem;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
+  max-width: 28ch;
+}
+
+.app-points {
+  margin: 4px 0 16px;
+  padding: 0;
+  list-style: none;
+  max-width: 44ch;
+}
+
+.app-points li {
+  position: relative;
+  margin: 0;
+  padding: 5px 0 5px 14px;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.app-points li + li {
+  border-top: 1px solid var(--line);
+}
+
+.app-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 5px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--accent);
+}
+
+.app-copy p.app-price {
+  margin: 0 0 18px;
+  max-width: 44ch;
+  color: var(--text-faint);
+  font-size: 13.5px;
+  line-height: 1.45;
 }
 
 .app-actions {

@@ -36,11 +36,14 @@
 }
 
 html {
-  scroll-behavior: smooth;
   color-scheme: dark;
   overflow-x: clip;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+}
+
+html.is-scroll-ready {
+  scroll-behavior: smooth;
 }
 
 body {

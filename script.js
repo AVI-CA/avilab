@@ -4,6 +4,22 @@
   const appleEase = "cubic-bezier(0.22, 1, 0.36, 1)";
   const appleOut = "cubic-bezier(0.4, 0, 1, 1)";
 
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  const scrollToHashOrTop = () => {
+    if (location.hash) {
+      const id = decodeURIComponent(location.hash.slice(1));
+      const target = id ? document.getElementById(id) : null;
+      if (target) target.scrollIntoView({ block: "start" });
+      return;
+    }
+    window.scrollTo(0, 0);
+  };
+
+  scrollToHashOrTop();
+
   const header = document.querySelector(".site-header");
   if (header) {
     const onScroll = () => {
@@ -82,7 +98,9 @@
       if (done) return;
       done = true;
       node.remove();
-      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+      if (lastFocus && typeof lastFocus.focus === "function") {
+        lastFocus.focus({ preventScroll: true });
+      }
     };
 
     if (reduce) {
@@ -157,7 +175,7 @@
         );
       });
     });
-    closeBtn.focus();
+    closeBtn.focus({ preventScroll: true });
   };
 
   document.addEventListener("keydown", (event) => {
@@ -244,6 +262,23 @@
         openSheet(img);
       });
     }
+  });
+
+  scrollToHashOrTop();
+  requestAnimationFrame(() => {
+    scrollToHashOrTop();
+    const enableSmooth = () => {
+      scrollToHashOrTop();
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add("is-scroll-ready");
+      });
+    };
+    if (document.readyState === "complete") enableSmooth();
+    else window.addEventListener("load", enableSmooth, { once: true });
+  });
+
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) scrollToHashOrTop();
   });
 
   const nodes = document.querySelectorAll("[data-reveal]");

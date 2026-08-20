@@ -69,9 +69,19 @@
     });
   });
 
+  const isUk = document.documentElement.lang === "uk";
+  const prevLabel = isUk ? "Попередній знімок" : "Previous screenshot";
+  const nextLabel = isUk ? "Наступний знімок" : "Next screenshot";
+  const chevronLeft =
+    '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M10.2 2.3 4.5 8l5.7 5.7 1.1-1.1L6.7 8l4.6-4.6z"/></svg>';
+  const chevronRight =
+    '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M5.8 2.3 4.7 3.4 9.3 8l-4.6 4.6 1.1 1.1L11.5 8z"/></svg>';
+
   let sheet = null;
+  let sheetApi = null;
   let lastImg = null;
   let lastFocus = null;
+  let photoGen = 0;
 
   const lockPage = (on) => {
     document.documentElement.classList.toggle("is-sheet-open", on);
@@ -85,11 +95,77 @@
     return { dx, dy, s };
   };
 
+  const applyPhoto = (photo, img) => {
+    photo.src = img.currentSrc || img.src;
+    photo.alt = img.alt || "";
+  };
+
+  const updateSheetCount = () => {
+    const count = sheet?.querySelector(".shot-sheet-count");
+    if (!count || !sheetApi) return;
+    count.textContent = `${sheetApi.getIndex() + 1} / ${sheetApi.count}`;
+  };
+
+  const preloadNeighbors = () => {
+    if (!sheetApi || sheetApi.count < 2) return;
+    [-1, 1].forEach((delta) => {
+      const img = sheetApi.imgAt(sheetApi.getIndex() + delta);
+      if (!img) return;
+      const probe = new Image();
+      probe.src = img.currentSrc || img.src;
+    });
+  };
+
+  const setSheetPhoto = (img, direction) => {
+    const photo = sheet?.querySelector(".shot-sheet-phone img");
+    if (!photo || !img) return;
+    lastImg = img;
+    updateSheetCount();
+    preloadNeighbors();
+    const gen = ++photoGen;
+    if (reduce || typeof photo.animate !== "function" || !direction) {
+      applyPhoto(photo, img);
+      return;
+    }
+    photo.getAnimations().forEach((anim) => anim.cancel());
+    const out = direction < 0 ? 32 : -32;
+    const anim = photo.animate(
+      [
+        { opacity: 1, transform: "none" },
+        { opacity: 0, transform: `translateX(${out}px)` },
+      ],
+      { duration: 180, easing: appleOut, fill: "forwards" }
+    );
+    anim.finished
+      .then(() => {
+        if (gen !== photoGen || !sheet) return;
+        applyPhoto(photo, img);
+        photo.animate(
+          [
+            { opacity: 0, transform: `translateX(${-out}px)` },
+            { opacity: 1, transform: "none" },
+          ],
+          { duration: 280, easing: appleEase }
+        );
+      })
+      .catch(() => {
+        if (gen !== photoGen || !sheet) return;
+        applyPhoto(photo, img);
+      });
+  };
+
+  const sheetStep = (delta) => {
+    if (!sheet || !sheetApi || sheetApi.count < 2) return;
+    const img = sheetApi.go(sheetApi.getIndex() + delta);
+    setSheetPhoto(img, delta);
+  };
+
   const closeSheet = () => {
     if (!sheet) return;
     const node = sheet;
     const phone = node.querySelector(".shot-sheet-phone");
     sheet = null;
+    sheetApi = null;
     lockPage(false);
     node.classList.remove("is-open");
 
@@ -126,8 +202,9 @@
     window.setTimeout(finish, 500);
   };
 
-  const openSheet = (img) => {
+  const openSheet = (img, api) => {
     closeSheet();
+    sheetApi = api;
     lastImg = img;
     lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
@@ -146,16 +223,62 @@
     const figure = document.createElement("figure");
     figure.className = "shot-sheet-phone";
     const photo = document.createElement("img");
-    photo.src = img.currentSrc || img.src;
-    photo.alt = img.alt || "";
+    applyPhoto(photo, img);
     figure.append(photo);
 
     sheet.append(closeBtn, figure);
+
+    if (api && api.count > 1) {
+      const prevBtn = document.createElement("button");
+      prevBtn.type = "button";
+      prevBtn.className = "shot-sheet-nav is-prev";
+      prevBtn.setAttribute("aria-label", prevLabel);
+      prevBtn.innerHTML = chevronLeft;
+      prevBtn.addEventListener("click", () => sheetStep(-1));
+
+      const nextBtn = document.createElement("button");
+      nextBtn.type = "button";
+      nextBtn.className = "shot-sheet-nav is-next";
+      nextBtn.setAttribute("aria-label", nextLabel);
+      nextBtn.innerHTML = chevronRight;
+      nextBtn.addEventListener("click", () => sheetStep(1));
+
+      const count = document.createElement("p");
+      count.className = "shot-sheet-count";
+      count.setAttribute("aria-live", "polite");
+
+      sheet.append(prevBtn, nextBtn, count);
+    }
+
     document.body.append(sheet);
     lockPage(true);
+    updateSheetCount();
+    preloadNeighbors();
     closeBtn.addEventListener("click", closeSheet);
     sheet.addEventListener("click", (event) => {
       if (event.target === sheet) closeSheet();
+    });
+
+    let start = null;
+    let swiped = false;
+    figure.addEventListener("pointerdown", (event) => {
+      start = { x: event.clientX, y: event.clientY };
+      swiped = false;
+    });
+    figure.addEventListener("pointerup", (event) => {
+      if (!start) return;
+      const dx = event.clientX - start.x;
+      const dy = event.clientY - start.y;
+      start = null;
+      if (Math.hypot(dx, dy) > 12) swiped = true;
+      if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy)) return;
+      sheetStep(dx < 0 ? 1 : -1);
+    });
+    figure.addEventListener("pointercancel", () => {
+      start = null;
+    });
+    figure.addEventListener("click", (event) => {
+      if (swiped) event.preventDefault();
     });
 
     requestAnimationFrame(() => {
@@ -179,7 +302,16 @@
   };
 
   document.addEventListener("keydown", (event) => {
+    if (!sheet) return;
     if (event.key === "Escape") closeSheet();
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      sheetStep(-1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      sheetStep(1);
+    }
   });
 
   document.querySelectorAll("[data-carousel]").forEach((root) => {
@@ -217,6 +349,14 @@
       dots.forEach((dot, n) => {
         dot.setAttribute("aria-selected", n === index ? "true" : "false");
       });
+      return slides[index].querySelector("img");
+    };
+
+    const api = {
+      getIndex: () => index,
+      count: slides.length,
+      go,
+      imgAt: (i) => slides[(i + slides.length) % slides.length].querySelector("img"),
     };
 
     go(index);
@@ -259,7 +399,7 @@
         if (swiped) return;
         const img = event.target.closest("img");
         if (!img) return;
-        openSheet(img);
+        openSheet(img, api);
       });
     }
   });

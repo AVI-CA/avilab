@@ -1168,6 +1168,7 @@ body.is-sheet-open {
   border-radius: 40px;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
   transform-origin: center center;
+  touch-action: none;
 }
 
 .shot-sheet-phone img {
@@ -1177,6 +1178,55 @@ body.is-sheet-open {
   object-fit: contain;
   border-radius: 34px;
   background: #000;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.shot-sheet-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(241, 241, 235, 0.12);
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+}
+
+.shot-sheet-nav.is-prev {
+  left: max(12px, env(safe-area-inset-left));
+}
+
+.shot-sheet-nav.is-next {
+  right: max(12px, env(safe-area-inset-right));
+}
+
+.shot-sheet-nav:hover {
+  background: rgba(241, 241, 235, 0.2);
+}
+
+.shot-sheet-nav:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.shot-sheet-count {
+  position: absolute;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 2;
+  margin: 0;
+  transform: translateX(-50%);
+  color: rgba(241, 241, 235, 0.72);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
 }
 
 #apps,

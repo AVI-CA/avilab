@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    document.documentElement.classList.add("is-booting");
+    document.documentElement.style.overflow = "hidden";
+    setTimeout(function () {
+      document.documentElement.classList.remove("is-booting");
+      document.documentElement.style.removeProperty("overflow");
+    }, 2500);
+  </script>
   <title>Privacy Policy — AviLab</title>
   <meta name="description" content="Privacy Policy for the AviLab website and AviLab software: Car Wallet, Sea Battle, and SUPKA.">
   <link rel="canonical" href="https://avi-ca.github.io/avilab/privacy.html">
@@ -25,7 +34,7 @@
   <link rel="icon" href="./assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./assets/brand/apple-touch-icon.png">
   <meta name="theme-color" content="#0c0d0f">
-  <link rel="stylesheet" href="./styles.css?v=7">
+  <link rel="stylesheet" href="./styles.css?v=8">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -267,6 +276,6 @@
     </div>
   </footer>
 
-  <script src="./script.js?v=7" defer></script>
+  <script src="./script.js?v=8" defer></script>
 </body>
 </html>

@@ -37,9 +37,14 @@
 
 html {
   color-scheme: dark;
-  overflow-x: clip;
+  overflow-x: hidden;
+  overflow-anchor: none;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+}
+
+html.is-booting {
+  overflow: hidden;
 }
 
 html.is-scroll-ready {
@@ -55,7 +60,8 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: clip;
+  overflow-x: hidden;
+  overflow-anchor: none;
   max-width: 100%;
 }
 

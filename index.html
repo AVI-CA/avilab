@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    document.documentElement.classList.add("is-booting");
+    document.documentElement.style.overflow = "hidden";
+    setTimeout(function () {
+      document.documentElement.classList.remove("is-booting");
+      document.documentElement.style.removeProperty("overflow");
+    }, 2500);
+  </script>
   <title>AviLab — Independent Software Studio</title>
   <meta name="description" content="AviLab is an independent software studio creating thoughtful apps, games and tools for Apple platforms.">
   <link rel="canonical" href="https://avi-ca.github.io/avilab/">
@@ -30,7 +39,7 @@
   <meta name="theme-color" content="#0c0d0f">
   <meta name="color-scheme" content="dark">
 
-  <link rel="stylesheet" href="./styles.css?v=7">
+  <link rel="stylesheet" href="./styles.css?v=8">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -341,6 +350,6 @@
     </div>
   </footer>
 
-  <script src="./script.js?v=7" defer></script>
+  <script src="./script.js?v=8" defer></script>
 </body>
 </html>

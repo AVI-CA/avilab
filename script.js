@@ -8,15 +8,46 @@
     history.scrollRestoration = "manual";
   }
 
+  document.documentElement.classList.add("is-booting");
+  document.documentElement.style.overflow = "hidden";
+
+  const hasHash = Boolean(location.hash && location.hash.length > 1);
+
+  const forceTop = () => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
+
   const scrollToHashOrTop = () => {
-    if (location.hash) {
+    if (hasHash) {
       const id = decodeURIComponent(location.hash.slice(1));
       const target = id ? document.getElementById(id) : null;
-      if (target) target.scrollIntoView({ block: "start" });
-      return;
+      if (target) {
+        target.scrollIntoView({ block: "start", behavior: "auto" });
+        return;
+      }
     }
-    window.scrollTo(0, 0);
+    forceTop();
   };
+
+  let pinTop = !hasHash;
+  const pinIfNeeded = () => {
+    if (pinTop) forceTop();
+  };
+  const stopPin = () => {
+    pinTop = false;
+  };
+  window.addEventListener("scroll", pinIfNeeded, { passive: true });
+  window.addEventListener("wheel", stopPin, { passive: true, once: true });
+  window.addEventListener("touchmove", stopPin, { passive: true, once: true });
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (event.target.closest('a[href^="#"]')) stopPin();
+    },
+    true
+  );
 
   scrollToHashOrTop();
 
@@ -314,6 +345,8 @@
     }
   });
 
+  const pendingCarousels = [];
+
   document.querySelectorAll("[data-carousel]").forEach((root) => {
     const slides = [...root.querySelectorAll(".shot-slide")];
     const dotsWrap = root.querySelector(".shot-dots");
@@ -360,7 +393,7 @@
     };
 
     go(index);
-    root.classList.add("is-ready");
+    pendingCarousels.push(root);
     prev?.addEventListener("click", () => go(index - 1));
     next?.addEventListener("click", () => go(index + 1));
 
@@ -404,21 +437,27 @@
     }
   });
 
-  scrollToHashOrTop();
-  requestAnimationFrame(() => {
+  const finishBoot = () => {
+    pendingCarousels.forEach((root) => root.classList.add("is-ready"));
     scrollToHashOrTop();
-    const enableSmooth = () => {
+    requestAnimationFrame(() => {
       scrollToHashOrTop();
+      document.documentElement.classList.remove("is-booting");
+      document.documentElement.style.removeProperty("overflow");
       requestAnimationFrame(() => {
+        scrollToHashOrTop();
+        pinTop = false;
         document.documentElement.classList.add("is-scroll-ready");
       });
-    };
-    if (document.readyState === "complete") enableSmooth();
-    else window.addEventListener("load", enableSmooth, { once: true });
-  });
+    });
+  };
+
+  if (document.readyState === "complete") requestAnimationFrame(finishBoot);
+  else window.addEventListener("load", finishBoot, { once: true });
 
   window.addEventListener("pageshow", (event) => {
-    if (event.persisted) scrollToHashOrTop();
+    if (event.persisted) return;
+    scrollToHashOrTop();
   });
 
   const nodes = document.querySelectorAll("[data-reveal]");

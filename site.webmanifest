@@ -1,0 +1,16 @@
+{
+  "name": "AviLab",
+  "short_name": "AviLab",
+  "description": "Independent software studio creating apps, games and tools for Apple platforms.",
+  "start_url": "./index.html",
+  "display": "browser",
+  "background_color": "#0c0d0f",
+  "theme_color": "#0c0d0f",
+  "icons": [
+    {
+      "src": "./assets/brand/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with the live site URL after GitHub Pages is enabled.
+Sitemap: https://avi-ca.github.io/avilab/sitemap.xml

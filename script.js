@@ -112,7 +112,6 @@
   let sheetApi = null;
   let lastImg = null;
   let lastFocus = null;
-  let photoGen = 0;
 
   const lockPage = (on) => {
     document.documentElement.classList.toggle("is-sheet-open", on);
@@ -153,42 +152,27 @@
     lastImg = img;
     updateSheetCount();
     preloadNeighbors();
-    const gen = ++photoGen;
-    if (reduce || typeof photo.animate !== "function" || !direction) {
-      applyPhoto(photo, img);
-      return;
-    }
+    applyPhoto(photo, img);
+    if (reduce || !direction || typeof photo.animate !== "function") return;
     photo.getAnimations().forEach((anim) => anim.cancel());
-    const out = direction < 0 ? 32 : -32;
-    const anim = photo.animate(
+    const from = direction < 0 ? 36 : -36;
+    photo.animate(
       [
+        { opacity: 0.25, transform: `translateX(${from}px)` },
         { opacity: 1, transform: "none" },
-        { opacity: 0, transform: `translateX(${out}px)` },
       ],
-      { duration: 180, easing: appleOut, fill: "forwards" }
+      { duration: 280, easing: appleEase }
     );
-    anim.finished
-      .then(() => {
-        if (gen !== photoGen || !sheet) return;
-        applyPhoto(photo, img);
-        photo.animate(
-          [
-            { opacity: 0, transform: `translateX(${-out}px)` },
-            { opacity: 1, transform: "none" },
-          ],
-          { duration: 280, easing: appleEase }
-        );
-      })
-      .catch(() => {
-        if (gen !== photoGen || !sheet) return;
-        applyPhoto(photo, img);
-      });
   };
 
+  let stepLock = 0;
   const sheetStep = (delta) => {
     if (!sheet || !sheetApi || sheetApi.count < 2) return;
+    const now = Date.now();
+    if (now - stepLock < 80) return;
+    stepLock = now;
     const img = sheetApi.go(sheetApi.getIndex() + delta);
-    setSheetPhoto(img, delta);
+    if (img) setSheetPhoto(img, delta);
   };
 
   const closeSheet = () => {
@@ -265,14 +249,20 @@
       prevBtn.className = "shot-sheet-nav is-prev";
       prevBtn.setAttribute("aria-label", prevLabel);
       prevBtn.innerHTML = chevronLeft;
-      prevBtn.addEventListener("click", () => sheetStep(-1));
 
       const nextBtn = document.createElement("button");
       nextBtn.type = "button";
       nextBtn.className = "shot-sheet-nav is-next";
       nextBtn.setAttribute("aria-label", nextLabel);
       nextBtn.innerHTML = chevronRight;
-      nextBtn.addEventListener("click", () => sheetStep(1));
+
+      const onNav = (delta) => (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        sheetStep(delta);
+      };
+      prevBtn.addEventListener("click", onNav(-1));
+      nextBtn.addEventListener("click", onNav(1));
 
       const count = document.createElement("p");
       count.className = "shot-sheet-count";
@@ -286,30 +276,72 @@
     updateSheetCount();
     preloadNeighbors();
     closeBtn.addEventListener("click", closeSheet);
+    let swiped = false;
+    let start = null;
+
+    const gestureStart = (x, y) => {
+      start = { x, y };
+      swiped = false;
+    };
+    const gestureEnd = (x, y) => {
+      if (!start) return;
+      const dx = x - start.x;
+      const dy = y - start.y;
+      start = null;
+      if (Math.abs(dx) < 36 || Math.abs(dx) < Math.abs(dy)) return;
+      swiped = true;
+      sheetStep(dx < 0 ? 1 : -1);
+    };
+
     sheet.addEventListener("click", (event) => {
+      if (swiped) {
+        swiped = false;
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
       if (event.target === sheet) closeSheet();
     });
 
-    let start = null;
-    let swiped = false;
-    figure.addEventListener("pointerdown", (event) => {
-      start = { x: event.clientX, y: event.clientY };
-      swiped = false;
-    });
-    figure.addEventListener("pointerup", (event) => {
-      if (!start) return;
-      const dx = event.clientX - start.x;
-      const dy = event.clientY - start.y;
-      start = null;
-      if (Math.hypot(dx, dy) > 12) swiped = true;
-      if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy)) return;
-      sheetStep(dx < 0 ? 1 : -1);
-    });
-    figure.addEventListener("pointercancel", () => {
-      start = null;
-    });
     figure.addEventListener("click", (event) => {
-      if (swiped) event.preventDefault();
+      if (swiped) return;
+      const rect = figure.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      event.stopPropagation();
+      sheetStep(x < rect.width / 2 ? -1 : 1);
+    });
+
+    sheet.addEventListener("pointerdown", (event) => {
+      if (event.target.closest("button")) return;
+      if (event.pointerType !== "mouse") {
+        try {
+          sheet.setPointerCapture(event.pointerId);
+        } catch (_) {
+          /* ignore */
+        }
+      }
+      gestureStart(event.clientX, event.clientY);
+    });
+    sheet.addEventListener("pointerup", (event) => {
+      if (event.target.closest("button")) return;
+      gestureEnd(event.clientX, event.clientY);
+    });
+    sheet.addEventListener("pointercancel", () => {
+      start = null;
+    });
+    sheet.addEventListener(
+      "touchstart",
+      (event) => {
+        if (event.target.closest("button")) return;
+        const touch = event.changedTouches[0];
+        if (touch) gestureStart(touch.clientX, touch.clientY);
+      },
+      { passive: true }
+    );
+    sheet.addEventListener("touchend", (event) => {
+      if (event.target.closest("button")) return;
+      const touch = event.changedTouches[0];
+      if (touch) gestureEnd(touch.clientX, touch.clientY);
     });
 
     requestAnimationFrame(() => {

@@ -1133,6 +1133,7 @@ body.is-sheet-open {
   -webkit-backdrop-filter: blur(0);
   opacity: 0;
   visibility: hidden;
+  touch-action: none;
   transition: opacity 420ms var(--ease-apple), visibility 420ms var(--ease-apple), background 420ms var(--ease-apple), backdrop-filter 420ms var(--ease-apple);
 }
 
@@ -1148,9 +1149,9 @@ body.is-sheet-open {
   position: absolute;
   top: max(14px, env(safe-area-inset-top));
   right: 16px;
-  z-index: 2;
-  width: 40px;
-  height: 40px;
+  z-index: 21;
+  width: 44px;
+  height: 44px;
   border: 0;
   border-radius: 999px;
   background: rgba(241, 241, 235, 0.12);
@@ -1166,7 +1167,7 @@ body.is-sheet-open {
 
 .shot-sheet-phone {
   margin: 0;
-  width: min(380px, 82vw);
+  width: min(380px, calc(100vw - 108px));
   max-height: min(86dvh, 920px);
   padding: 6px;
   background: #070807;
@@ -1175,6 +1176,8 @@ body.is-sheet-open {
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
   transform-origin: center center;
   touch-action: none;
+  z-index: 1;
+  position: relative;
 }
 
 .shot-sheet-phone img {
@@ -1191,19 +1194,20 @@ body.is-sheet-open {
 .shot-sheet-nav {
   position: absolute;
   top: 50%;
-  z-index: 2;
-  width: 44px;
-  height: 44px;
+  z-index: 20;
+  width: 52px;
+  height: 52px;
   margin: 0;
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: rgba(241, 241, 235, 0.12);
+  background: rgba(241, 241, 235, 0.16);
   color: var(--text);
   cursor: pointer;
   display: grid;
   place-items: center;
   transform: translateY(-50%);
+  pointer-events: auto;
 }
 
 .shot-sheet-nav.is-prev {

@@ -5,7 +5,7 @@
   --bg: #0c0d0f;
   --bg-soft: #121316;
   --bg-card: #16181c;
-  --bg-header: rgba(12, 13, 15, 0.92);
+  --bg-header: rgba(12, 13, 15, 0.72);
   --text: #f1f1eb;
   --text-muted: #9b9c96;
   --text-faint: #6e6f6a;
@@ -24,6 +24,7 @@
   --wrap: 1120px;
   --header-h: 64px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
   --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
 }
@@ -119,10 +120,14 @@ a:hover {
   height: var(--header-h);
   background: var(--bg-header);
   border-bottom: 1px solid transparent;
+  backdrop-filter: saturate(140%) blur(20px);
+  -webkit-backdrop-filter: saturate(140%) blur(20px);
+  transition: background 320ms var(--ease-apple), border-color 320ms var(--ease-apple);
 }
 
 .site-header.is-scrolled {
   border-bottom-color: var(--line);
+  background: rgba(12, 13, 15, 0.88);
 }
 
 .header-inner {
@@ -176,10 +181,12 @@ a:hover {
   padding: 8px 12px;
   border-radius: 999px;
   font-size: 14px;
+  transition: color 200ms var(--ease-apple), background 200ms var(--ease-apple);
 }
 
 .nav-links a:hover,
-.nav-links a[aria-current="page"] {
+.nav-links a[aria-current="page"],
+.nav-links a[aria-current="location"] {
   color: var(--text);
   background: rgba(255, 255, 255, 0.04);
 }
@@ -231,6 +238,7 @@ a:hover {
   font-weight: 620;
   max-width: 12ch;
   overflow-wrap: break-word;
+  animation: av-rise 900ms var(--ease) both;
 }
 
 .hero-lead {
@@ -238,6 +246,7 @@ a:hover {
   max-width: 38ch;
   color: var(--text-muted);
   font-size: 1.05rem;
+  animation: av-rise 900ms var(--ease) 90ms both;
 }
 
 .hero-actions {
@@ -245,6 +254,7 @@ a:hover {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 32px;
+  animation: av-rise 900ms var(--ease) 160ms both;
 }
 
 .hero-note {
@@ -275,10 +285,13 @@ a:hover {
   color: inherit;
   text-decoration: none;
   display: block;
+  border-radius: 10px;
+  transition: transform 280ms var(--ease-apple);
 }
 
 .pipeline-step:hover {
   color: inherit;
+  transform: translateY(-1px);
 }
 
 .pipeline-step:hover .pipeline-name {
@@ -323,6 +336,7 @@ a:hover {
   height: 340px;
   max-width: 100%;
   overflow: hidden;
+  animation: av-rise 1100ms var(--ease) 140ms both;
 }
 
 .hero-stack .card-icon {
@@ -332,6 +346,7 @@ a:hover {
   border-radius: 26px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
   overflow: hidden;
+  animation: av-float 9s var(--ease-apple) infinite;
 }
 
 .hero-stack .card-icon img {
@@ -344,18 +359,23 @@ a:hover {
   left: 18%;
   top: 18px;
   transform: rotate(-8deg);
+  animation-duration: 8.5s;
 }
 
 .hero-stack .card-icon:nth-child(2) {
   left: 48%;
   top: 88px;
   transform: rotate(7deg);
+  animation-duration: 10s;
+  animation-delay: 0.6s;
 }
 
 .hero-stack .card-icon:nth-child(3) {
   left: 28%;
   top: 186px;
   transform: rotate(2deg);
+  animation-duration: 9s;
+  animation-delay: 1.1s;
 }
 
 /* Buttons
@@ -451,6 +471,11 @@ a:hover {
   border-radius: 22px;
   align-items: start;
   overflow: visible;
+  transition: border-color 280ms var(--ease-apple);
+}
+
+.app-featured:hover {
+  border-color: var(--line-strong);
 }
 
 .app-featured + .app-featured {
@@ -588,6 +613,7 @@ a:hover {
   width: min(280px, 100%);
   touch-action: pan-y;
   user-select: none;
+  cursor: zoom-in;
 }
 
 .shot-slides {
@@ -602,16 +628,23 @@ a:hover {
 }
 
 .device-iphone.shot-slide:not(.is-active) {
-  display: none !important;
+  opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  z-index: 0;
+  transform: scale(0.985);
 }
 
 .device-iphone.shot-slide.is-active {
-  display: block !important;
+  opacity: 1;
   visibility: visible;
   position: relative;
   z-index: 1;
+  transform: none;
+}
+
+.shot-carousel.is-ready .device-iphone.shot-slide {
+  transition: opacity 480ms var(--ease-apple), visibility 480ms var(--ease-apple), transform 480ms var(--ease-apple);
 }
 
 .device-iphone {
@@ -657,6 +690,11 @@ a:hover {
   display: grid;
   place-items: center;
   padding: 0;
+  transition: border-color 200ms var(--ease-apple), color 200ms var(--ease-apple), transform 200ms var(--ease-apple);
+}
+
+.shot-btn:active {
+  transform: scale(0.94);
 }
 
 .shot-btn:hover {
@@ -681,6 +719,7 @@ a:hover {
   border-radius: 999px;
   background: rgba(241, 241, 235, 0.28);
   cursor: pointer;
+  transition: width 280ms var(--ease-apple), background 280ms var(--ease-apple);
 }
 
 .shot-dot[aria-selected="true"] {
@@ -1037,14 +1076,114 @@ a:hover {
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(16px) scale(0.985);
   animation: none;
 }
 
 [data-reveal].is-in {
   opacity: 1;
   transform: none;
-  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+  transition: opacity 800ms var(--ease), transform 800ms var(--ease);
+}
+
+@keyframes av-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes av-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+html.is-sheet-open,
+body.is-sheet-open {
+  overflow: hidden;
+}
+
+.shot-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: max(24px, env(safe-area-inset-top)) 20px max(28px, env(safe-area-inset-bottom));
+  background: rgba(6, 7, 8, 0);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 420ms var(--ease-apple), visibility 420ms var(--ease-apple), background 420ms var(--ease-apple), backdrop-filter 420ms var(--ease-apple);
+}
+
+.shot-sheet.is-open {
+  opacity: 1;
+  visibility: visible;
+  background: rgba(6, 7, 8, 0.72);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+.shot-sheet-close {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  right: 16px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(241, 241, 235, 0.12);
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.shot-sheet-close:hover {
+  background: rgba(241, 241, 235, 0.2);
+}
+
+.shot-sheet-phone {
+  margin: 0;
+  width: min(380px, 82vw);
+  max-height: min(86dvh, 920px);
+  padding: 6px;
+  background: #070807;
+  border: 1px solid rgba(241, 241, 235, 0.16);
+  border-radius: 40px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+  transform-origin: center center;
+}
+
+.shot-sheet-phone img {
+  width: 100%;
+  height: auto;
+  max-height: calc(min(86dvh, 920px) - 12px);
+  object-fit: contain;
+  border-radius: 34px;
+  background: #000;
+}
+
+#apps,
+#about,
+#support,
+#car-wallet,
+#sea-battle,
+#supka,
+#philosophy {
+  scroll-margin-top: calc(var(--header-h) + 14px);
 }
 
 /* Responsive
@@ -1183,6 +1322,19 @@ a:hover {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  .hero h1,
+  .hero-lead,
+  .hero-actions,
+  .hero-stack,
+  .hero-stack .card-icon {
+    animation: none;
+  }
+
+  .shot-sheet,
+  .shot-sheet-phone {
+    transition: none;
   }
 
   .app-card:hover,

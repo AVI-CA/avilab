@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AviLab — Independent Software Studio</title>
   <meta name="description" content="AviLab is an independent software studio creating thoughtful apps, games and tools for Apple platforms.">
-  <!-- Replace this canonical URL after GitHub Pages (or a custom domain) is live. -->
   <link rel="canonical" href="https://avi-ca.github.io/avilab/">
+  <link rel="alternate" hreflang="en-US" href="https://avi-ca.github.io/avilab/">
+  <link rel="alternate" hreflang="uk" href="https://avi-ca.github.io/avilab/uk/">
+  <link rel="alternate" hreflang="x-default" href="https://avi-ca.github.io/avilab/">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AviLab">
@@ -15,6 +17,7 @@
   <meta property="og:url" content="https://avi-ca.github.io/avilab/">
   <meta property="og:image" content="./assets/brand/og.jpg">
   <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="uk_UA">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AviLab — Independent Software Studio">
@@ -38,11 +41,17 @@
         <img src="./assets/brand/mark.svg" width="22" height="22" alt="">
         AviLab
       </a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#apps">Apps</a>
-        <a href="#about">About</a>
-        <a href="#support">Support</a>
-      </nav>
+      <div class="header-tools">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#apps">Apps</a>
+          <a href="#about">About</a>
+          <a href="#support">Support</a>
+        </nav>
+        <nav class="lang-switch" aria-label="Language">
+          <a href="./index.html" hreflang="en-US" lang="en" aria-current="true">EN</a>
+          <a href="./uk/index.html" hreflang="uk" lang="uk">УК</a>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -108,15 +117,20 @@
               </div>
             </div>
             <h3>Car Wallet</h3>
-            <p>Organise fuel, maintenance, expenses, documents and ownership history for your vehicles — a quiet log for iPhone and iPad.</p>
+            <p>Organize fuel, maintenance, expenses, documents and ownership history for your vehicles — a quiet log for iPhone and iPad.</p>
             <div class="app-actions">
               <a class="store-badge" href="https://apps.apple.com/app/car-wallet/id6781877158">
                 <img src="./assets/badges/app-store.svg" width="156" height="52" alt="Download Car Wallet on the App Store">
               </a>
             </div>
           </div>
-          <div class="app-art">
-            <img src="./assets/apps/car-wallet/screenshot-1.jpg" width="640" height="1100" alt="Car Wallet on iPhone, showing a vehicle dashboard with fuel, service and expense tracking.">
+          <div class="device-stage">
+            <figure class="device-iphone">
+              <img src="./assets/apps/car-wallet/screen-1.jpg" width="660" height="1434" alt="Car Wallet dashboard on iPhone, showing a vehicle card, fuel logging and expense stats.">
+            </figure>
+            <figure class="device-iphone">
+              <img src="./assets/apps/car-wallet/screen-3.jpg" width="660" height="1434" alt="Car Wallet Vehicles screen on iPhone, with documents and tire details.">
+            </figure>
           </div>
         </article>
 
@@ -134,8 +148,13 @@
             <h3>Sea Battle</h3>
             <p>A modern naval battle game with local multiplayer for Apple devices. Coming soon to the App Store.</p>
           </div>
-          <div class="app-art">
-            <img src="./assets/apps/sea-battle/artwork.svg" width="640" height="420" alt="A dark naval grid with brass targeting marks for Sea Battle.">
+          <div class="device-stage">
+            <figure class="device-iphone">
+              <img src="./assets/apps/sea-battle/screen-menu.jpg" width="660" height="1434" alt="Sea Battle main menu on iPhone, with Play vs Computer, Host Game and Join Game.">
+            </figure>
+            <figure class="device-iphone">
+              <img src="./assets/apps/sea-battle/screen-battle.jpg" width="660" height="1434" alt="Sea Battle match screen on iPhone, with enemy waters and the home fleet.">
+            </figure>
           </div>
         </article>
 
@@ -151,8 +170,10 @@
             <h3>SUPKA</h3>
             <p>A focused training companion designed for active people.</p>
           </div>
-          <div class="app-art">
-            <img src="./assets/apps/supka/artwork.svg" width="640" height="520" alt="SUPKA shown on Apple Watch and iPhone, with a live session on the wrist and a compact training summary on the phone.">
+          <div class="device-stage">
+            <figure class="device-iphone">
+              <img src="./assets/apps/supka/artwork.svg" width="640" height="520" alt="Placeholder artwork for SUPKA on Apple Watch and iPhone until product screenshots are added.">
+            </figure>
           </div>
         </article>
       </div>

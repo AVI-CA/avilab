@@ -8,6 +8,15 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  document.querySelectorAll(".lang-switch a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!location.hash) return;
+      const url = new URL(link.href, location.href);
+      url.hash = location.hash;
+      link.href = url.href;
+    });
+  });
+
   const nodes = document.querySelectorAll("[data-reveal]");
   if (!nodes.length) return;
 

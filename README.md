@@ -18,7 +18,10 @@ Open [http://localhost:8080](http://localhost:8080).
 
 The live site is a **project** site:
 
-**https://avi-ca.github.io/avilab/**
+**English (default):** https://avi-ca.github.io/avilab/  
+**Ukrainian:** https://avi-ca.github.io/avilab/uk/
+
+`https://avi-ca.github.io/` (no `/avilab/`) will 404 until you create a user site repo named `AVI-CA.github.io`.
 
 `https://avi-ca.github.io/` (no `/avilab/`) will 404 until you create a user site repo named `AVI-CA.github.io`.
 
@@ -62,14 +65,34 @@ Real icons were copied in as a starting point. Replace anytime the store icon ch
 
 ### 3. Product artwork / screenshots
 
-| File | Now | Replace with |
-| --- | --- | --- |
-| `assets/apps/supka/artwork.svg` | Device illustration | Real Watch + iPhone screenshots or a marketing composition |
-| `assets/apps/sea-battle/artwork.svg` | Grid illustration | Game screenshot or key art when you are ready to show it |
-| `assets/apps/car-wallet/screenshot-1.jpg` | Current App Store marketing screenshot | A tighter crop or a newer shot |
-| `assets/apps/car-wallet/screenshot-2.jpg` | Extra store screenshot, unused on the page | Optional second frame |
+Screenshots must be **portrait iPhone screen captures**, not cropped marketing frames. The site shows them inside an iPhone bezel with `object-fit: contain`.
 
-Keep files small. Prefer compressed WebP/JPG for photos and PNG/SVG for icons.
+| File | Now |
+| --- | --- |
+| `assets/apps/car-wallet/screen-1.jpg` | Dashboard, from the live App Store listing |
+| `assets/apps/car-wallet/screen-3.jpg` | Vehicles / documents, from the live App Store listing |
+| `assets/apps/sea-battle/screen-menu.jpg` | 6.9" capture from the Sea Battle project (1320×2868 source) |
+| `assets/apps/sea-battle/screen-battle.jpg` | Match screen from the same set |
+| `assets/apps/supka/screen-1.jpg` | **Add this** — see size below |
+| `assets/apps/supka/screen-2.jpg` | **Add this** — second angle |
+
+### SUPKA screenshot size
+
+Use the same size you would upload to App Store Connect for **iPhone 6.9"**:
+
+**1320 × 2868 px, portrait, PNG or JPEG**
+
+Also accepted by Apple for 6.9": 1290 × 2796 or 1260 × 2736. For this website, **1320 × 2868** matches Sea Battle and will drop straight into the iPhone frame.
+
+Export **full-screen UI** (status bar included is fine). Do not add extra headlines around the phone.
+
+Then replace the SUPKA placeholder in `index.html` and `uk/index.html`:
+
+```html
+<img src="./assets/apps/supka/screen-1.jpg" width="660" height="1434" alt="SUPKA on iPhone">
+```
+
+A second frame can use `screen-2.jpg`. Watch screenshots are optional later.
 
 ### 4. Brand / SEO images
 

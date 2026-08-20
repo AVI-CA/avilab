@@ -69,10 +69,10 @@ Screenshots must be **portrait iPhone screen captures**, not cropped marketing f
 
 | File | Now |
 | --- | --- |
-| `assets/apps/car-wallet/screen-1.jpg` | Dashboard, from the live App Store listing |
-| `assets/apps/car-wallet/screen-3.jpg` | Vehicles / documents, from the live App Store listing |
-| `assets/apps/sea-battle/screen-menu.jpg` | 6.9" capture from the Sea Battle project (1320×2868 source) |
-| `assets/apps/sea-battle/screen-battle.jpg` | Match screen from the same set |
+| `assets/apps/car-wallet/screen-1.jpg` | Dashboard from iCloud `ScreenS CAR WALLET` (iPhone 17 Pro Max, 1320×2868) |
+| `assets/apps/car-wallet/screen-3.jpg` | Vehicles / documents from the same folder |
+| `assets/apps/sea-battle/screen-menu.jpg` | `docs/store/screenshots/iphone-69-menu.png` |
+| `assets/apps/sea-battle/screen-battle.jpg` | `docs/store/screenshots/iphone-69-battle.png` |
 | `assets/apps/supka/screen-1.jpg` | **Add this** — see size below |
 | `assets/apps/supka/screen-2.jpg` | **Add this** — second angle |
 

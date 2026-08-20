@@ -56,12 +56,35 @@
             <a class="btn btn-primary" href="#apps">Explore our work</a>
             <a class="btn btn-ghost" href="#about">About AviLab</a>
           </div>
-          <p class="hero-note">Shipping SUPKA and Car Wallet. Sea Battle is in development.</p>
         </div>
         <div class="hero-stack" aria-hidden="true">
-          <div class="card-icon"><img src="./assets/apps/supka/icon.png" alt=""></div>
           <div class="card-icon"><img src="./assets/apps/car-wallet/icon.png" alt=""></div>
           <div class="card-icon"><img src="./assets/apps/sea-battle/icon.jpg" alt=""></div>
+          <div class="card-icon"><img src="./assets/apps/supka/icon.png" alt=""></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pipeline" aria-label="What AviLab is shipping">
+      <div class="wrap">
+        <div class="pipeline-track">
+          <a class="pipeline-step is-live" href="#car-wallet">
+            <p class="pipeline-kicker">Shipped</p>
+            <p class="pipeline-status">Available</p>
+            <p class="pipeline-name">Car Wallet</p>
+          </a>
+          <span class="pipeline-rule" aria-hidden="true"></span>
+          <a class="pipeline-step is-review" href="#sea-battle">
+            <p class="pipeline-kicker">Reviewing</p>
+            <p class="pipeline-status">App Review</p>
+            <p class="pipeline-name">Sea Battle</p>
+          </a>
+          <span class="pipeline-rule" aria-hidden="true"></span>
+          <a class="pipeline-step is-build" href="#supka">
+            <p class="pipeline-kicker">Building</p>
+            <p class="pipeline-status">In development</p>
+            <p class="pipeline-name">SUPKA</p>
+          </a>
         </div>
       </div>
     </section>
@@ -73,74 +96,65 @@
           <h2>Apps, games and tools</h2>
         </div>
 
-        <article class="app-featured" data-reveal>
+        <article class="app-featured" id="car-wallet" data-reveal>
           <div class="app-copy">
             <div class="icon-row">
               <div class="app-icon">
-                <img src="./assets/apps/supka/icon.png" alt="SUPKA app icon">
+                <img src="./assets/apps/car-wallet/icon.png" alt="Car Wallet app icon">
               </div>
               <div class="app-meta">
-                <span class="chip">Apple Watch / iPhone</span>
-                <span class="chip chip-live">Available on the App Store</span>
+                <span class="chip">Utilities · iPhone &amp; iPad</span>
+                <span class="chip chip-live">Available</span>
               </div>
             </div>
-            <h3>SUPKA</h3>
-            <p>A focused training companion designed for active people. Built around Apple Watch and iPhone, with the session staying on the wrist when that is where it belongs.</p>
+            <h3>Car Wallet</h3>
+            <p>Organise fuel, maintenance, expenses, documents and ownership history for your vehicles — a quiet log for iPhone and iPad.</p>
             <div class="app-actions">
-              <!-- Wrap this badge in <a href="https://apps.apple.com/app/idXXXX"> when the live listing URL is known.
-                   Do not use a fake App Store ID. Search this file for SUPKA_STORE. -->
-              <span class="store-badge" id="SUPKA_STORE">
-                <img src="./assets/badges/app-store.svg" width="156" height="52" alt="Available on the App Store">
-              </span>
+              <a class="store-badge" href="https://apps.apple.com/app/car-wallet/id6781877158">
+                <img src="./assets/badges/app-store.svg" width="156" height="52" alt="Download Car Wallet on the App Store">
+              </a>
             </div>
+          </div>
+          <div class="app-art">
+            <img src="./assets/apps/car-wallet/screenshot-1.jpg" width="640" height="1100" alt="Car Wallet on iPhone, showing a vehicle dashboard with fuel, service and expense tracking.">
+          </div>
+        </article>
+
+        <article class="app-featured is-review" id="sea-battle" data-reveal>
+          <div class="app-copy">
+            <div class="icon-row">
+              <div class="app-icon">
+                <img src="./assets/apps/sea-battle/icon.jpg" alt="Sea Battle app icon">
+              </div>
+              <div class="app-meta">
+                <span class="chip">Game · iPhone &amp; iPad</span>
+                <span class="chip chip-soon">App Review</span>
+              </div>
+            </div>
+            <h3>Sea Battle</h3>
+            <p>A modern naval battle game with local multiplayer for Apple devices. Coming soon to the App Store.</p>
+          </div>
+          <div class="app-art">
+            <img src="./assets/apps/sea-battle/artwork.svg" width="640" height="420" alt="A dark naval grid with brass targeting marks for Sea Battle.">
+          </div>
+        </article>
+
+        <article class="app-featured is-build" id="supka" data-reveal>
+          <div class="app-icon">
+            <img src="./assets/apps/supka/icon.png" alt="SUPKA app icon">
+          </div>
+          <div class="app-copy">
+            <div class="app-meta">
+              <span class="chip">Fitness · Apple Watch &amp; iPhone</span>
+              <span class="chip chip-build">In development</span>
+            </div>
+            <h3>SUPKA</h3>
+            <p>A focused training companion designed for active people.</p>
           </div>
           <div class="app-art">
             <img src="./assets/apps/supka/artwork.svg" width="640" height="520" alt="SUPKA shown on Apple Watch and iPhone, with a live session on the wrist and a compact training summary on the phone.">
           </div>
         </article>
-
-        <div class="app-grid">
-          <article class="app-card" data-reveal>
-            <div class="app-art">
-              <img src="./assets/apps/sea-battle/artwork.svg" width="640" height="420" alt="A dark naval grid with brass targeting marks for Sea Battle.">
-            </div>
-            <div class="app-card-body">
-              <div class="icon-row">
-                <div class="app-icon">
-                  <img src="./assets/apps/sea-battle/icon.jpg" alt="Sea Battle app icon">
-                </div>
-                <div class="app-meta">
-                  <span class="chip">Game</span>
-                  <span class="chip chip-soon">In development</span>
-                </div>
-              </div>
-              <h3>Sea Battle</h3>
-              <p>A modern naval battle game with local multiplayer for Apple devices.</p>
-            </div>
-          </article>
-
-          <article class="app-card" data-reveal>
-            <div class="app-art">
-              <img src="./assets/apps/car-wallet/screenshot-1.jpg" width="640" height="1100" alt="Car Wallet on iPhone, showing a vehicle dashboard with fuel, service and expense tracking.">
-            </div>
-            <div class="app-card-body">
-              <div class="icon-row">
-                <div class="app-icon">
-                  <img src="./assets/apps/car-wallet/icon.png" alt="Car Wallet app icon">
-                </div>
-                <div class="app-meta">
-                  <span class="chip">Utilities · iPhone &amp; iPad</span>
-                  <span class="chip chip-live">Available on the App Store</span>
-                </div>
-              </div>
-              <h3>Car Wallet</h3>
-              <p>Organise fuel, maintenance, expenses, documents and ownership history for your vehicles — a quiet log for iPhone and iPad.</p>
-              <a class="store-badge" href="https://apps.apple.com/app/car-wallet/id6781877158">
-                <img src="./assets/badges/app-store.svg" width="156" height="52" alt="Download Car Wallet on the App Store">
-              </a>
-            </div>
-          </article>
-        </div>
       </div>
     </section>
 

@@ -16,42 +16,39 @@ Open [http://localhost:8080](http://localhost:8080).
 
 ## GitHub Pages
 
-1. Push this repo to GitHub (suggested name: `avilab`).
-2. Settings → Pages → Deploy from a branch → `main` / `/ (root)`.
-3. If the site is a **project** site, it will live at:
+The live site is a **project** site:
 
-   `https://YOUR-USERNAME.github.io/avilab/`
+**https://avi-ca.github.io/avilab/**
 
-   Relative paths are already used, so that layout works.
-4. Then replace every `https://avi-ca.github.io/avilab/` placeholder in:
+`https://avi-ca.github.io/` (no `/avilab/`) will 404 until you create a user site repo named `AVI-CA.github.io`.
 
-   - `index.html`, `privacy.html`, `terms.html` (canonical + Open Graph URLs)
-   - `robots.txt`
-   - `sitemap.xml`
+Pages deploys from `main` / `/ (root)`. After a push it usually takes 30–90 seconds.
 
-   If you later add a custom domain, put the host in a `CNAME` file (see `CNAME.example`) and use `https://your-domain/` as the canonical URL.
+If you later add a custom domain, put the host in a `CNAME` file (see `CNAME.example`) and update the canonical URLs in `index.html`, `privacy.html`, `terms.html`, `robots.txt`, and `sitemap.xml`.
 
 `.nojekyll` is included so GitHub Pages does not run Jekyll.
 
-## What to replace before this feels finished
+## Product status on the homepage
 
-### 1. App Store URL for SUPKA
+The featured list is the studio story, in order:
+
+| Product | Visitor label | Internal status | App Store badge |
+| --- | --- | --- | --- |
+| **Car Wallet** | Available | Shipped | Yes — live URL |
+| **Sea Battle** | Coming soon to the App Store | App Review | No — listing may not be public yet |
+| **SUPKA** | In development | Building | No |
+
+When Apple approves Sea Battle, change the App Review chip to Available and add the store URL in `index.html` (`#sea-battle`). Do not add a badge until the public listing exists.
+
+## What to replace
+
+### 1. Sea Battle App Store URL (after approval)
 
 Car Wallet already uses the real listing:
 
 `https://apps.apple.com/app/car-wallet/id6781877158`
 
-SUPKA is marked **Available on the App Store**, but there was no public numeric ID in the SUPKA project, and the App Store search did not return the app. The homepage badge is therefore **not a link**.
-
-In `index.html`, find `id="SUPKA_STORE"` and wrap the badge:
-
-```html
-<a class="store-badge" id="SUPKA_STORE" href="https://apps.apple.com/app/idYOUR_NUMERIC_ID">
-  <img src="./assets/badges/app-store.svg" width="156" height="52" alt="Download SUPKA on the App Store">
-</a>
-```
-
-Do not invent an ID.
+Sea Battle should get the same treatment only after the listing is live. Keep SUPKA as in development until you are ready to submit it.
 
 ### 2. App icons
 
@@ -97,10 +94,6 @@ Keep files small. Prefer compressed WebP/JPG for photos and PNG/SVG for icons.
 
 Do not publish those pages as “finished legal documents” until the placeholders are gone. The support email already used on the site is `avi.apps.labs@gmail.com`.
 
-### 6. Sea Battle status
-
-The site labels Sea Battle **In development** and does not offer an App Store button. When it is actually for sale, change the chip, add the store URL, and only then describe shipping privacy practices.
-
 ## Product facts used on the site
 
 Pulled from the live Car Wallet listing, not invented:
@@ -110,7 +103,7 @@ Pulled from the live Car Wallet listing, not invented:
 - **Status:** Available on the App Store
 - **Copy:** fuel, maintenance, expenses, documents, ownership history
 
-SUPKA uses your brief (Apple Watch / iPhone training companion). Sea Battle uses your brief (game, local multiplayer, in development).
+Sea Battle is a game for iPhone and iPad, currently in App Review. SUPKA is a fitness companion for Apple Watch and iPhone, currently in development.
 
 ## Files
 
@@ -129,8 +122,7 @@ assets/
 
 ## Suggestions (optional)
 
-- Attach the SUPKA store ID as soon as App Store Connect shows it; that is the one incomplete public link.
-- When Sea Battle ships, promote it to the featured row if you want the game to lead, and keep Car Wallet as the utility beside it.
+- When Sea Battle is approved, swap App Review → Available and add the public App Store URL. That is a two-line change in `index.html`.
+- Real Sea Battle screenshots will carry the featured row better than the current grid illustration.
 - A custom domain (for example `avilab.app`) will read more like a studio and less like a project page.
 - Official [Apple App Store badge assets](https://developer.apple.com/app-store/marketing/guidelines/) can replace `assets/badges/app-store.svg` if you want pixel-perfect marketing art.
-- Product pages (`supka.html`, `car-wallet.html`) can wait. The homepage is enough until you have screenshots and store URLs for every app.

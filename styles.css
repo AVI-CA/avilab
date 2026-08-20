@@ -209,6 +209,70 @@ a:hover {
   font-size: 13px;
 }
 
+/* Studio pipeline: shipped → reviewing → building */
+
+.pipeline {
+  padding: 8px 0 24px;
+}
+
+.pipeline-track {
+  display: grid;
+  grid-template-columns: 1fr 28px 1fr 28px 1fr;
+  align-items: stretch;
+  gap: 0 12px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-soft);
+}
+
+.pipeline-step {
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.pipeline-step:hover {
+  color: inherit;
+}
+
+.pipeline-step:hover .pipeline-name {
+  color: var(--accent);
+}
+
+.pipeline-kicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.pipeline-status {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.pipeline-name {
+  margin: 6px 0 0;
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.pipeline-step.is-live .pipeline-status { color: var(--accent); }
+.pipeline-step.is-review .pipeline-status { color: var(--brass); }
+.pipeline-step.is-build .pipeline-status { color: var(--text-muted); }
+
+.pipeline-rule {
+  align-self: center;
+  height: 1px;
+  background: var(--line-strong);
+}
+
 .hero-stack {
   position: relative;
   height: 340px;
@@ -341,6 +405,41 @@ a:hover {
   align-items: center;
 }
 
+.app-featured + .app-featured {
+  margin-top: 20px;
+}
+
+.app-featured.is-review {
+  border-color: rgba(196, 165, 116, 0.28);
+}
+
+.app-featured.is-build {
+  grid-template-columns: auto minmax(0, 1.2fr) minmax(220px, 0.7fr);
+  gap: 22px;
+  padding: 22px 24px;
+}
+
+.app-featured.is-build .app-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+}
+
+.app-featured.is-build .app-copy h3 {
+  font-size: 1.45rem;
+  margin-top: 8px;
+}
+
+.app-featured.is-build .app-copy p {
+  margin-bottom: 0;
+}
+
+.app-featured.is-build .app-art img {
+  height: 160px;
+  object-fit: cover;
+  object-position: center;
+}
+
 .app-copy h3 {
   margin: 10px 0 6px;
   font-size: 2rem;
@@ -378,6 +477,10 @@ a:hover {
   border-color: rgba(196, 165, 116, 0.35);
 }
 
+.chip-build {
+  color: var(--text-muted);
+}
+
 .app-copy p {
   margin: 14px 0 22px;
   color: var(--text-muted);
@@ -401,6 +504,12 @@ a:hover {
 .app-art img {
   width: 100%;
   height: auto;
+}
+
+.app-featured:not(.is-build) .app-art img {
+  height: 420px;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .app-grid {
@@ -679,12 +788,21 @@ a:hover {
 @media (max-width: 900px) {
   .hero-grid,
   .app-featured,
+  .app-featured.is-build,
   .about-grid,
   .principles,
   .app-grid,
   .footer-grid,
-  .support-box {
+  .support-box,
+  .pipeline-track {
     grid-template-columns: 1fr;
+  }
+
+  .pipeline-rule {
+    width: 1px;
+    height: 16px;
+    justify-self: start;
+    margin-left: 2px;
   }
 
   .hero-stack {

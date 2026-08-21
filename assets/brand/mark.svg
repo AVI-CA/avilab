@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-hidden="true">
-  <rect width="48" height="48" rx="12" fill="#c9e86a"/>
-  <path fill="#14160f" d="M24.3 9.4c.46 0 .84.27 1 .77l8.08 22.66c.14.38-.12.77-.52.77h-3.32a.88.88 0 0 1-.85-.6L26.9 27.4h-6.72l-1.32 5.6a.88.88 0 0 1-.85.6h-3.32c-.4 0-.66-.39-.52-.77L23.3 10.17c.16-.5.54-.77 1-.77Zm0 7-2.4 9.66h4.84L24.3 16.4Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AviLab">
+  <rect width="64" height="64" fill="#0c0d0f"/>
+  <g fill="none" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="#c9e86a" d="M19 47.5 L32.5 16.5"/>
+    <path stroke="#f1f1eb" d="M32.5 16.5 L32.5 47.5"/>
+    <path stroke="#c9e86a" d="M32.5 47.5 L48 47.5"/>
+  </g>
 </svg>

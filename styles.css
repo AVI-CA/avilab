@@ -172,6 +172,10 @@ a:hover {
   color: var(--text);
 }
 
+.wordmark-lab {
+  color: var(--accent);
+}
+
 .wordmark img {
   width: 28px;
   height: 28px;

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AviLab">
   <rect width="64" height="64" fill="#0c0d0f"/>
-  <g transform="translate(6 16) scale(0.667)">
-    <path fill="#c9e86a" d="M16 0h18L24 48H6z"/>
-    <path fill="#f6f6f6" d="M34 0h18v30h24v18H34z"/>
+  <g transform="translate(8 17.9) scale(0.494)">
+    <path fill="#c9e86a" d="M42.4 0h12.4L12.4 57.3H0z"/>
+    <path fill="#f6f6f6" d="M54.8 0h9.8v47.5h25.3L97.2 57.3H54.8z"/>
   </g>
 </svg>

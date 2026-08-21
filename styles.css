@@ -177,9 +177,9 @@ a:hover {
 }
 
 .wordmark img {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
+  width: auto;
+  height: 22px;
+  border-radius: 0;
 }
 
 .nav-links {

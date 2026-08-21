@@ -1,8 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AviLab">
-  <rect width="64" height="64" fill="#0c0d0f"/>
-  <g fill="none" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="#c9e86a" d="M19 47.5 L32.5 16.5"/>
-    <path stroke="#f1f1eb" d="M32.5 16.5 L32.5 47.5"/>
-    <path stroke="#c9e86a" d="M32.5 47.5 L48 47.5"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 68" role="img" aria-label="AviLab">
+  <!-- A: lime chevron, no crossbar. L: separate letter in off-white. -->
+  <path fill="#c9e86a" d="M41 8h6v53h-5V20h-3L15 61H8L41 8z"/>
+  <path fill="#f6f6f6" d="M51 8h6v47h29v6H51V8z"/>
 </svg>

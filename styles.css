@@ -159,7 +159,6 @@ a:hover {
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   color: var(--text);
   text-decoration: none;
   font-weight: 620;
@@ -188,6 +187,7 @@ a:hover {
   width: auto;
   height: 32px;
   border-radius: 0;
+  margin-inline-end: 10px;
 }
 
 .nav-links {

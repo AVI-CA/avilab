@@ -163,7 +163,7 @@ a:hover {
   color: var(--text);
   text-decoration: none;
   font-weight: 620;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   font-size: 17px;
   flex-shrink: 0;
 }
@@ -172,13 +172,21 @@ a:hover {
   color: var(--text);
 }
 
+.wordmark-text {
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  word-spacing: 0;
+}
+
 .wordmark-lab {
   color: var(--accent);
+  margin: 0;
+  padding: 0;
 }
 
 .wordmark img {
   width: auto;
-  height: 28px;
+  height: 32px;
   border-radius: 0;
 }
 

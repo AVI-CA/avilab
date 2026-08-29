@@ -128,6 +128,13 @@
   const applyPhoto = (photo, img) => {
     photo.src = img.currentSrc || img.src;
     photo.alt = img.alt || "";
+    const figure = photo.closest(".shot-sheet-phone");
+    if (!figure) return;
+    const sync = () => {
+      figure.classList.toggle("is-wide", photo.naturalWidth > photo.naturalHeight);
+    };
+    if (photo.complete && photo.naturalWidth) sync();
+    else photo.addEventListener("load", sync, { once: true });
   };
 
   const updateSheetCount = () => {

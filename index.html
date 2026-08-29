@@ -39,7 +39,7 @@
   <meta name="theme-color" content="#0c0d0f">
   <meta name="color-scheme" content="dark">
 
-  <link rel="stylesheet" href="./styles.css?v=21">
+  <link rel="stylesheet" href="./styles.css?v=22">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -79,6 +79,7 @@
           <div class="card-icon"><img src="./assets/apps/car-wallet/icon.png" alt=""></div>
           <div class="card-icon"><img src="./assets/apps/sea-battle/icon.jpg" alt=""></div>
           <div class="card-icon"><img src="./assets/apps/supka/icon.png" alt=""></div>
+          <div class="card-icon"><img src="./assets/apps/tank-84/icon.png" alt=""></div>
         </div>
       </div>
     </section>
@@ -96,6 +97,12 @@
             <p class="pipeline-kicker">Reviewing</p>
             <p class="pipeline-status">App Review</p>
             <p class="pipeline-name">Sea Battle</p>
+          </a>
+          <span class="pipeline-rule" aria-hidden="true"></span>
+          <a class="pipeline-step is-build" href="#tank-84">
+            <p class="pipeline-kicker">Building</p>
+            <p class="pipeline-status">In development</p>
+            <p class="pipeline-name">TANK '84</p>
           </a>
           <span class="pipeline-rule" aria-hidden="true"></span>
           <a class="pipeline-step is-build" href="#supka">
@@ -217,6 +224,49 @@
                 <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M10.2 2.3 4.5 8l5.7 5.7 1.1-1.1L6.7 8l4.6-4.6z"/></svg>
               </button>
               <div class="shot-dots" role="tablist" aria-label="Sea Battle screenshots"></div>
+              <button type="button" class="shot-btn" data-next aria-label="Next screenshot">
+                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M5.8 2.3 4.7 3.4 9.3 8l-4.6 4.6 1.1 1.1L11.5 8z"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="app-featured is-build has-wide-shots" id="tank-84" data-reveal>
+          <div class="app-copy">
+            <div class="icon-row">
+              <div class="app-icon">
+                <img src="./assets/apps/tank-84/icon.png" alt="TANK '84 app icon">
+              </div>
+              <div class="app-meta">
+                <span class="chip">Game · iPhone</span>
+                <span class="chip chip-build">In development</span>
+              </div>
+            </div>
+            <h3>TANK '84</h3>
+            <p>A retro tank battle for iPhone, in landscape: versus the computer, two players on one device, or nearby over local wireless. In development.</p>
+          </div>
+          <div class="shot-carousel" data-carousel>
+            <div class="shot-frame is-wide">
+              <div class="shot-slides">
+                <figure class="device-iphone is-landscape shot-slide is-active">
+                  <img src="./assets/apps/tank-84/01.jpg" width="1024" height="471" alt="TANK '84 title menu on a CRT, with 1 Player, 2 Players, hi-scores and settings." decoding="async">
+                </figure>
+                <figure class="device-iphone is-landscape shot-slide">
+                  <img src="./assets/apps/tank-84/02.jpg" width="1024" height="471" alt="TANK '84 stage play on iPhone, with a top-down 17-by-13 arena, a D-pad and a fire button." decoding="async" loading="lazy">
+                </figure>
+                <figure class="device-iphone is-landscape shot-slide">
+                  <img src="./assets/apps/tank-84/03.jpg" width="1024" height="471" alt="TANK '84 hangar Settings on iPhone, with music, sound, random maps and About." decoding="async" loading="lazy">
+                </figure>
+                <figure class="device-iphone is-landscape shot-slide">
+                  <img src="./assets/apps/tank-84/04.jpg" width="1024" height="471" alt="TANK '84 two-player menu on iPhone, with Host, Join and Same Device." decoding="async" loading="lazy">
+                </figure>
+              </div>
+            </div>
+            <div class="shot-ui">
+              <button type="button" class="shot-btn" data-prev aria-label="Previous screenshot">
+                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M10.2 2.3 4.5 8l5.7 5.7 1.1-1.1L6.7 8l4.6-4.6z"/></svg>
+              </button>
+              <div class="shot-dots" role="tablist" aria-label="TANK '84 screenshots"></div>
               <button type="button" class="shot-btn" data-next aria-label="Next screenshot">
                 <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M5.8 2.3 4.7 3.4 9.3 8l-4.6 4.6 1.1 1.1L11.5 8z"/></svg>
               </button>
@@ -350,6 +400,6 @@
     </div>
   </footer>
 
-  <script src="./script.js?v=9" defer></script>
+  <script src="./script.js?v=10" defer></script>
 </body>
 </html>

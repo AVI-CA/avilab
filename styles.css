@@ -1292,11 +1292,125 @@ body.is-sheet-open {
 #apps,
 #about,
 #support,
+/* Product landing (Car Wallet)
+   -------------------------------------------------- */
+
+.product-hero {
+  padding: 48px 0 24px;
+}
+
+.product-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+  gap: 36px;
+  align-items: start;
+}
+
+.product-hero h1 {
+  margin: 8px 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  line-height: 1.12;
+  max-width: 18ch;
+}
+
+.product-hero .app-lede {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
+  max-width: 28ch;
+}
+
+.product-seo-lead {
+  margin: 0 0 22px;
+  color: var(--text-muted);
+  max-width: 44ch;
+}
+
+.app-icon-lg {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+}
+
+.product-body {
+  padding: 12px 0 88px;
+  max-width: 68ch;
+}
+
+.product-block {
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.product-block h2 {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+.product-block p {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+}
+
+.product-block p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-list {
+  margin-top: 8px;
+}
+
+.faq-list details {
+  border-top: 1px solid var(--line);
+}
+
+.faq-list details:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-list summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 14px 0;
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  float: right;
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+.faq-list details[open] summary::after {
+  content: "–";
+}
+
+.faq-list details p {
+  margin: 0 0 16px;
+  padding-right: 28px;
+  color: var(--text-muted);
+}
+
 #car-wallet,
 #sea-battle,
 #tank-84,
 #supka,
-#philosophy {
+#philosophy,
+#faq,
+#pricing {
   scroll-margin-top: calc(var(--header-h) + 14px);
 }
 
@@ -1307,6 +1421,7 @@ body.is-sheet-open {
   .hero-grid,
   .app-featured,
   .app-featured.has-wide-shots,
+  .product-hero-grid,
   .about-grid,
   .app-grid,
   .footer-grid {

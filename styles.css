@@ -1315,8 +1315,10 @@ body.is-sheet-open {
   align-items: start;
 }
 
-.product-hero-grid.is-wide {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+@media (min-width: 901px) {
+  .product-hero-grid.is-wide {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+  }
 }
 
 .product-hero h1 {

@@ -127,7 +127,7 @@ Pulled from the live Car Wallet listing, not invented:
 - **Status:** Available on the App Store
 - **Copy:** fuel, maintenance, expenses, documents, ownership history
 
-Sea Battle is a game for iPhone and iPad, available on the App Store. SUPKA is a fitness companion for iPhone (Apple Watch planned soon), available on the App Store. TANK '84 is a retro arcade tank game for iPhone, available on the App Store.
+Sea Battle is a game for iPhone and iPad, available on the App Store. SUPKA is a fitness companion for Apple Watch and iPhone, available on the App Store. TANK '84 is a retro arcade tank game for iPhone, available on the App Store.
 
 ## Files
 

@@ -1,0 +1,490 @@
+/* TANK '84 Game Guide — hangar field guide */
+
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+:root {
+  --guide-gold: #f2d133;
+  --guide-cream: rgb(235, 230, 199);
+  --guide-cream-dim: rgba(235, 230, 199, 0.72);
+  --guide-olive: #1c2416;
+  --guide-olive-well: #141a10;
+  --guide-rim: #7a9258;
+  --guide-rim-soft: rgba(122, 146, 88, 0.45);
+  --guide-bg: #0a0908;
+  --guide-ink: #0c0d0f;
+  --guide-mono: "Share Tech Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --guide-max: 52rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.guide-page {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--guide-mono);
+  color: var(--guide-cream);
+  background: var(--guide-bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.guide-page a {
+  color: var(--guide-gold);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.guide-page a:hover {
+  color: #ffe566;
+}
+
+.guide-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--guide-gold);
+  color: var(--guide-ink);
+  font: inherit;
+}
+
+.guide-skip:focus {
+  left: 0.75rem;
+  top: 0.75rem;
+}
+
+/* Backdrop */
+.guide-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(8, 7, 6, 0.82) 0%, rgba(10, 9, 8, 0.92) 45%, rgba(8, 7, 6, 0.96) 100%),
+    url("./hangar.jpg") center / cover no-repeat;
+  pointer-events: none;
+}
+
+.guide-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.05) 2px,
+    rgba(0, 0, 0, 0.05) 4px
+  );
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Header */
+.guide-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--guide-rim-soft);
+  background: rgba(10, 9, 8, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.guide-header-inner {
+  max-width: calc(var(--guide-max) + 4rem);
+  margin: 0 auto;
+  padding: 0.75rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.guide-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--guide-cream);
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.guide-brand:hover {
+  color: var(--guide-gold);
+}
+
+.guide-brand img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.guide-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.guide-nav a {
+  color: var(--guide-cream-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.guide-nav a:hover {
+  color: var(--guide-gold);
+}
+
+.guide-lang {
+  display: inline-flex;
+  border: 1px solid var(--guide-rim-soft);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.guide-lang a {
+  padding: 0.28rem 0.55rem;
+  color: var(--guide-cream-dim);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.guide-lang a[aria-current="true"] {
+  background: var(--guide-olive);
+  color: var(--guide-gold);
+}
+
+.guide-lang a:hover {
+  color: var(--guide-gold);
+}
+
+/* Main layout */
+.guide-wrap {
+  max-width: calc(var(--guide-max) + 4rem);
+  margin: 0 auto;
+  padding: 0 1.15rem 3.5rem;
+}
+
+/* Hero — one composition */
+.guide-hero {
+  padding: 3.25rem 0 2.25rem;
+  text-align: left;
+  animation: guide-fade-up 0.7s ease both;
+}
+
+.guide-hero-mark {
+  display: block;
+  margin: 0 0 0.85rem;
+  color: var(--guide-gold);
+  font-size: clamp(2.4rem, 9vw, 3.6rem);
+  line-height: 0.95;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 0 40px rgba(242, 210, 51, 0.18);
+}
+
+.guide-hero-line {
+  margin: 0 0 1.35rem;
+  max-width: 28rem;
+  color: var(--guide-cream-dim);
+  font-size: 1rem;
+}
+
+.guide-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.guide-store img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+
+.guide-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--guide-rim);
+  background: transparent;
+  color: var(--guide-gold);
+  font: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.guide-btn:hover {
+  background: rgba(242, 210, 51, 0.08);
+  color: var(--guide-gold);
+  border-color: var(--guide-gold);
+}
+
+/* Intro / outro */
+.guide-prose {
+  margin: 0 0 2.5rem;
+  max-width: 40rem;
+  animation: guide-fade-up 0.75s ease 0.08s both;
+}
+
+.guide-prose p {
+  margin: 0 0 0.9rem;
+  color: var(--guide-cream);
+  font-size: 1.02rem;
+}
+
+.guide-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.guide-blurb {
+  margin: 1.25rem 0 0;
+  padding: 0.85rem 1rem;
+  border-left: 2px solid var(--guide-gold);
+  background: rgba(28, 36, 22, 0.55);
+  color: var(--guide-cream-dim);
+  font-size: 0.9rem;
+}
+
+.guide-outro {
+  margin: 2.75rem 0 2rem;
+  max-width: 40rem;
+  animation: guide-fade-up 0.6s ease both;
+}
+
+.guide-outro p {
+  margin: 0 0 0.85rem;
+  color: var(--guide-cream-dim);
+}
+
+.guide-outro-punch {
+  margin: 1.25rem 0 0 !important;
+  color: var(--guide-gold) !important;
+  font-size: clamp(1.35rem, 4.5vw, 1.75rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Sections */
+.guide-section {
+  margin: 0 0 2.75rem;
+}
+
+.guide-section-title {
+  margin: 0 0 1.15rem;
+  color: var(--guide-gold);
+  font-size: clamp(1.15rem, 3.5vw, 1.35rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--guide-rim-soft);
+  padding-bottom: 0.55rem;
+}
+
+/* Card grid */
+.guide-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .guide-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.guide-card {
+  display: grid;
+  grid-template-columns: 4.25rem 1fr;
+  gap: 0.85rem;
+  align-items: start;
+  padding: 0.85rem 0.9rem;
+  background: var(--guide-olive-well);
+  border: 1px solid var(--guide-rim-soft);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+  animation: guide-fade-up 0.55s ease both;
+}
+
+.guide-card:hover {
+  border-color: var(--guide-rim);
+  transform: translateY(-1px);
+}
+
+.guide-card:nth-child(1) { animation-delay: 0.02s; }
+.guide-card:nth-child(2) { animation-delay: 0.05s; }
+.guide-card:nth-child(3) { animation-delay: 0.08s; }
+.guide-card:nth-child(4) { animation-delay: 0.11s; }
+.guide-card:nth-child(5) { animation-delay: 0.14s; }
+.guide-card:nth-child(6) { animation-delay: 0.17s; }
+.guide-card:nth-child(7) { animation-delay: 0.2s; }
+.guide-card:nth-child(8) { animation-delay: 0.23s; }
+.guide-card:nth-child(9) { animation-delay: 0.26s; }
+.guide-card:nth-child(10) { animation-delay: 0.29s; }
+
+.guide-sprite {
+  width: 4.25rem;
+  height: 4.25rem;
+  display: grid;
+  place-items: center;
+  background: #0a0c08;
+  border: 1px solid rgba(122, 146, 88, 0.28);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.guide-sprite img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.guide-sprite-svg {
+  color: var(--guide-gold);
+}
+
+.guide-sprite-svg svg {
+  width: 36px;
+  height: 36px;
+  display: block;
+}
+
+.guide-card h3 {
+  margin: 0 0 0.35rem;
+  color: var(--guide-gold);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.guide-card p {
+  margin: 0;
+  color: var(--guide-cream-dim);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+/* Acknowledgments */
+.guide-thanks {
+  margin: 2.5rem 0 1rem;
+  padding: 1.25rem 1.15rem;
+  border: 1px solid var(--guide-rim-soft);
+  background: rgba(20, 26, 16, 0.72);
+  max-width: 40rem;
+}
+
+.guide-thanks h2 {
+  margin: 0 0 0.85rem;
+  color: var(--guide-gold);
+  font-size: 1rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.guide-thanks p {
+  margin: 0 0 0.75rem;
+  color: var(--guide-cream-dim);
+  font-size: 0.92rem;
+}
+
+.guide-thanks p:last-child {
+  margin-bottom: 0;
+}
+
+.guide-thanks-role {
+  color: var(--guide-cream) !important;
+  letter-spacing: 0.04em;
+}
+
+/* Footer */
+.guide-footer {
+  border-top: 1px solid var(--guide-rim-soft);
+  background: rgba(8, 7, 6, 0.9);
+  padding: 1.5rem 1.15rem 2.25rem;
+}
+
+.guide-footer-inner {
+  max-width: calc(var(--guide-max) + 4rem);
+  margin: 0 auto;
+}
+
+.guide-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.15rem;
+  margin-bottom: 0.85rem;
+}
+
+.guide-footer-links a {
+  color: var(--guide-cream-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.guide-footer-links a:hover {
+  color: var(--guide-gold);
+}
+
+.guide-footer-note {
+  margin: 0;
+  color: rgba(235, 230, 199, 0.45);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+@keyframes guide-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .guide-hero,
+  .guide-prose,
+  .guide-outro,
+  .guide-card {
+    animation: none;
+  }
+
+  .guide-card:hover {
+    transform: none;
+  }
+}

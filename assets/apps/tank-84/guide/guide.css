@@ -346,6 +346,7 @@ body.guide-page {
 .guide-card:nth-child(10) { animation-delay: 0.29s; }
 
 .guide-sprite {
+  position: relative;
   width: 4.25rem;
   height: 4.25rem;
   display: grid;
@@ -354,6 +355,17 @@ body.guide-page {
   border: 1px solid rgba(122, 146, 88, 0.28);
   border-radius: 2px;
   overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Catch right-click / long-press on the well so Save Image is harder */
+.guide-sprite::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .guide-sprite img {
@@ -362,6 +374,11 @@ body.guide-page {
   object-fit: contain;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .guide-sprite-svg {
@@ -455,10 +472,19 @@ body.guide-page {
 }
 
 .guide-footer-note {
-  margin: 0;
+  margin: 0 0 0.45rem;
   color: rgba(235, 230, 199, 0.45);
   font-size: 0.75rem;
   letter-spacing: 0.06em;
+}
+
+.guide-footer-rights {
+  margin: 0;
+  max-width: 40rem;
+  color: rgba(235, 230, 199, 0.38);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
 }
 
 @keyframes guide-fade-up {

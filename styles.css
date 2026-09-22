@@ -1301,7 +1301,7 @@ body.is-sheet-open {
 #apps,
 #about,
 #support,
-/* Product landing (Car Wallet)
+/* Product landing pages
    -------------------------------------------------- */
 
 .product-hero {
@@ -1313,6 +1313,10 @@ body.is-sheet-open {
   grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
   gap: 36px;
   align-items: start;
+}
+
+.product-hero-grid.is-wide {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
 }
 
 .product-hero h1 {

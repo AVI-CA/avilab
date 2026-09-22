@@ -40,7 +40,7 @@ The featured list is the studio story, in order:
 | **Car Wallet** | Available | Shipped | Yes — live URL |
 | **Sea Battle** | Available | Shipped | Yes — live URL |
 | **SUPKA** | Available | Shipped | Yes — live URL |
-| **TANK '84** | In development | Building | No |
+| **TANK '84** | Available | Shipped | Yes — live URL |
 
 When Apple approves Sea Battle, change the App Review chip to Available and add the store URL in `index.html` (`#sea-battle`). Do not add a badge until the public listing exists.
 
@@ -127,7 +127,7 @@ Pulled from the live Car Wallet listing, not invented:
 - **Status:** Available on the App Store
 - **Copy:** fuel, maintenance, expenses, documents, ownership history
 
-Sea Battle is a game for iPhone and iPad, available on the App Store. SUPKA is a fitness companion for iPhone (Apple Watch planned soon), available on the App Store. TANK '84 is a retro arcade tank game for iPhone, currently in development.
+Sea Battle is a game for iPhone and iPad, available on the App Store. SUPKA is a fitness companion for iPhone (Apple Watch planned soon), available on the App Store. TANK '84 is a retro arcade tank game for iPhone, available on the App Store.
 
 ## Files
 

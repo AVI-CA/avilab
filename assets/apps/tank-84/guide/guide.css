@@ -27,39 +27,32 @@ html {
 }
 
 body.guide-page {
-  margin: 0;
   min-height: 100vh;
+  background: var(--guide-bg);
+}
+
+/* Hangar mono + cream stay in the guide body; site chrome uses styles.css */
+body.guide-page main {
   font-family: var(--guide-mono);
   color: var(--guide-cream);
-  background: var(--guide-bg);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
-.guide-page a {
+body.guide-page main a {
   color: var(--guide-gold);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
 }
 
-.guide-page a:hover {
+body.guide-page main a:hover {
   color: #ffe566;
 }
 
-.guide-skip {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 100;
-  padding: 0.6rem 1rem;
-  background: var(--guide-gold);
-  color: var(--guide-ink);
-  font: inherit;
-}
-
-.guide-skip:focus {
-  left: 0.75rem;
-  top: 0.75rem;
+/* Keep studio chrome opaque over the hangar backdrop */
+body.guide-page .site-footer {
+  position: relative;
+  background: var(--bg);
 }
 
 /* Backdrop */
@@ -86,92 +79,6 @@ body.guide-page {
   );
   opacity: 0.35;
   pointer-events: none;
-}
-
-/* Header */
-.guide-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  border-bottom: 1px solid var(--guide-rim-soft);
-  background: rgba(10, 9, 8, 0.78);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.guide-header-inner {
-  max-width: calc(var(--guide-max) + 4rem);
-  margin: 0 auto;
-  padding: 0.75rem 1.15rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.guide-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--guide-cream);
-  text-decoration: none;
-  font-size: 0.95rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.guide-brand:hover {
-  color: var(--guide-gold);
-}
-
-.guide-brand img {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-}
-
-.guide-tools {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.guide-nav a {
-  color: var(--guide-cream-dim);
-  text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.guide-nav a:hover {
-  color: var(--guide-gold);
-}
-
-.guide-lang {
-  display: inline-flex;
-  border: 1px solid var(--guide-rim-soft);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.guide-lang a {
-  padding: 0.28rem 0.55rem;
-  color: var(--guide-cream-dim);
-  text-decoration: none;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-}
-
-.guide-lang a[aria-current="true"] {
-  background: var(--guide-olive);
-  color: var(--guide-gold);
-}
-
-.guide-lang a:hover {
-  color: var(--guide-gold);
 }
 
 /* Main layout */
@@ -404,86 +311,6 @@ body.guide-page {
   margin: 0;
   color: var(--guide-cream-dim);
   font-size: 0.88rem;
-  line-height: 1.45;
-}
-
-/* Acknowledgments */
-.guide-thanks {
-  margin: 2.5rem 0 1rem;
-  padding: 1.25rem 1.15rem;
-  border: 1px solid var(--guide-rim-soft);
-  background: rgba(20, 26, 16, 0.72);
-  max-width: 40rem;
-}
-
-.guide-thanks h2 {
-  margin: 0 0 0.85rem;
-  color: var(--guide-gold);
-  font-size: 1rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-
-.guide-thanks p {
-  margin: 0 0 0.75rem;
-  color: var(--guide-cream-dim);
-  font-size: 0.92rem;
-}
-
-.guide-thanks p:last-child {
-  margin-bottom: 0;
-}
-
-.guide-thanks-role {
-  color: var(--guide-cream) !important;
-  letter-spacing: 0.04em;
-}
-
-/* Footer */
-.guide-footer {
-  border-top: 1px solid var(--guide-rim-soft);
-  background: rgba(8, 7, 6, 0.9);
-  padding: 1.5rem 1.15rem 2.25rem;
-}
-
-.guide-footer-inner {
-  max-width: calc(var(--guide-max) + 4rem);
-  margin: 0 auto;
-}
-
-.guide-footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem 1.15rem;
-  margin-bottom: 0.85rem;
-}
-
-.guide-footer-links a {
-  color: var(--guide-cream-dim);
-  text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.guide-footer-links a:hover {
-  color: var(--guide-gold);
-}
-
-.guide-footer-note {
-  margin: 0 0 0.45rem;
-  color: rgba(235, 230, 199, 0.45);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-}
-
-.guide-footer-rights {
-  margin: 0;
-  max-width: 40rem;
-  color: rgba(235, 230, 199, 0.38);
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
   line-height: 1.45;
 }
 

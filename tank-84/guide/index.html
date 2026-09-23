@@ -26,26 +26,29 @@
 
   <link rel="icon" href="../../assets/brand/favicon.svg?v=21" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../../assets/brand/apple-touch-icon.png">
-  <meta name="theme-color" content="#0a0908">
+  <meta name="theme-color" content="#0c0d0f">
   <meta name="color-scheme" content="dark">
 
-  <link rel="stylesheet" href="../../assets/apps/tank-84/guide/guide.css?v=2">
+  <link rel="stylesheet" href="../../styles.css?v=26">
+  <link rel="stylesheet" href="../../assets/apps/tank-84/guide/guide.css?v=3">
 </head>
 <body class="guide-page">
-  <a class="guide-skip" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="guide-backdrop" aria-hidden="true"></div>
 
-  <header class="guide-header">
-    <div class="guide-header-inner">
-      <a class="guide-brand" href="../../index.html">
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="../../index.html">
         <img src="../../assets/brand/avilab-mark.png?v=20" width="32" height="32" alt="">
-        <span>AviLab</span>
+        <span class="wordmark-text">Avi<span class="wordmark-lab">Lab</span></span>
       </a>
-      <div class="guide-tools">
-        <nav class="guide-nav" aria-label="Primary">
-          <a href="../">TANK '84</a>
+      <div class="header-tools">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="../../index.html#apps">Apps</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#support">Support</a>
         </nav>
-        <nav class="guide-lang" aria-label="Language">
+        <nav class="lang-switch" aria-label="Language">
           <a href="./" hreflang="en-US" lang="en" aria-current="true">EN</a>
           <a href="../../uk/tank-84/guide/" hreflang="uk" lang="uk">УК</a>
         </nav>
@@ -260,31 +263,28 @@
         <p>This is not a remake of anyone else’s cartridge. The maps, art, and rules were built for this game. The name is a salute — 1984 arcade heat, and a nod to a real machine from Kharkiv.</p>
         <p class="guide-outro-punch">Defend the base.</p>
       </div>
-
-      <aside class="guide-thanks" id="acknowledgments" aria-labelledby="thanks-title">
-        <h2 id="thanks-title">Acknowledgments</h2>
-        <p>This project would not have been possible without the support of my family.</p>
-        <p class="guide-thanks-role">Angelina — Chief QA Engineer</p>
-        <p>She walked every sortie before you did. Countless bug hunts, thorough testing, and brilliant ideas helped bring this game to life.</p>
-        <p>To my family — thank you for simply being there through it all.</p>
-      </aside>
     </div>
   </main>
 
-  <footer class="guide-footer">
-    <div class="guide-footer-inner">
-      <nav class="guide-footer-links" aria-label="Footer">
-        <a href="https://avi-ca.github.io/tank-84-legal/privacy.html">Privacy</a>
-        <a href="https://avi-ca.github.io/tank-84-legal/terms.html">Terms</a>
-        <a href="../../index.html#support">Support</a>
-        <a href="https://apps.apple.com/app/tank-84/id6806829139">App Store</a>
-        <a href="../">TANK '84</a>
-        <a href="../../index.html">AviLab</a>
-      </nav>
-      <p class="guide-footer-note">© 2026 AviLab · TANK ’84 Game Guide</p>
-      <p class="guide-footer-rights">Sprites and art © AviLab. Shown here for the Game Guide only. Do not copy, redistribute, or reuse them in other games or products.</p>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <strong><span class="wordmark-text">Avi<span class="wordmark-lab">Lab</span></span></strong>
+          Independent software studio.
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="../../index.html#apps">Apps</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#support">Support</a>
+          <a href="../../privacy.html">Privacy Policy</a>
+          <a href="../../terms.html">Terms of Use</a>
+        </nav>
+      </div>
+      <p class="copyright">© 2026 AviLab. All rights reserved.</p>
     </div>
   </footer>
+  <script src="../../script.js?v=10" defer></script>
   <script>
     (function () {
       function isSpriteTarget(el) {

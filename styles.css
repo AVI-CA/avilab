@@ -979,6 +979,43 @@ a:hover {
   color: var(--text);
 }
 
+.footer-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  min-width: 0;
+}
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--text-muted);
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.footer-social a:hover,
+.footer-social a:focus-visible {
+  color: var(--accent);
+}
+
+.footer-social svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
 .copyright {
   margin: 28px 0 0;
   color: var(--text-faint);
@@ -1441,6 +1478,12 @@ body.is-sheet-open {
   .app-grid,
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .footer-end,
+  .footer-social {
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
   .site-header {
